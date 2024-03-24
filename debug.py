@@ -1,29 +1,22 @@
-# debug.py
-
 from models.author import Author
 from models.book import Book
 import ipdb
+from models import create_tables
 
-Author.create_table()
-Book.create_table()
+create_tables() 
+
 def reset_database():
    
-    Book.drop_table()
-    Author.drop_table()
-    Book.create_table()
-    Author.create_table()
 
-    # Create seed data
-    author1 = Author.create("F. Scott Fitzgerald", "fitzgerald@example.com")
-    author2 = Author.create("Harper Lee", "harperlee@gmail.com")
+    author1 = Author.create("F. Scott Fitzgerald", "fitzgerald@gmail.com")
+    author2 = Author.create("Harper Lee", "harperle@gmail.com")
     author3 = Author.create("George Orwell", "georgeorwell@gmail.com")
     author4 = Author.create("J.K. Rowling" , "rowling@gmail.com")
-    author5 = Author.create("Jane Austen", "janeausten@egmail.com")
+    author5 = Author.create("Jane Austen", "janeausten@gmail.com")
     author6 = Author.create("J.D. Salinger", "salinger@gmail.com")
     author7 = Author.create("J.R.R. Tolkien", "tolkien@gmail.com")
     author8 = Author.create("Dan Brown", "danbrown@gmail.com")
     author9 = Author.create("Douglas Adams", "douglasadams@gmail.com")
-   
 
     Book.create("The Great Gatsby", author1.id)
     Book.create("To Kill a Mockingbird", author2.id)

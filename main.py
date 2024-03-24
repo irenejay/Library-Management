@@ -52,7 +52,7 @@ def delete_author():
     else:
         print(f'Author {id_} not found')
 
-# Now let's create similar functions for Book
+
 def list_books():
     books = Book.get_all()
     for book in books:

@@ -1,5 +1,4 @@
-
-from models.__init__ import CURSOR, CONN
+from models.__init__ import CURSOR, CONN,create_tables
 
 class Book:
     all = {}
@@ -24,24 +23,10 @@ class Book:
             raise ValueError("Title must be a non-empty string")
 
     @classmethod
-    def create_table(cls):
-        sql = """
-            CREATE TABLE IF NOT EXISTS books (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT,
-            author_id INTEGER,
-            FOREIGN KEY (author_id) REFERENCES authors(id))
-        """
-        CURSOR.execute(sql)
-        CONN.commit()
-
-    @classmethod
-    def drop_table(cls):
-        sql = """
-            DROP TABLE IF EXISTS books;
-        """
-        CURSOR.execute(sql)
-        CONN.commit()
+    def create(cls, title, author_id):
+        book = cls(title, author_id)
+        book.save()
+        return book
 
     def save(self):
         sql = """
@@ -52,12 +37,6 @@ class Book:
         CONN.commit()
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
-
-    @classmethod
-    def create(cls, title, author_id):
-        book = cls(title, author_id)
-        book.save()
-        return book
 
     def update(self):
         sql = """
@@ -110,11 +89,11 @@ class Book:
         return cls.instance_from_db(row) if row else None
 
     @classmethod
-    def find_by_author(cls, author_id):
+    def find_by_name(cls, name):
         sql = """
             SELECT *
-            FROM books
-            WHERE author_id = ?
+            FROM authors
+            WHERE name = ?
         """
-        rows = CURSOR.execute(sql, (author_id,)).fetchall()
-        return [cls.instance_from_db(row) for row in rows]
+        row = CURSOR.execute(sql, (name,)).fetchone()
+        return cls.instance_from_db(row) if row else None

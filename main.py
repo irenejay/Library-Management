@@ -25,11 +25,13 @@ def find_author_by_id():
 
 def create_author():
     name = input("Enter the author's name: ")
+    email = input("Enter the author's email: ")
     try:
-        author = Author.create(name)
-        print(f'Success: {author}')
+        author = Author.create(name, email)  
+        print(f'Successfully created author: {author}')
     except Exception as exc:
         print("Error creating author: ", exc)
+
 
 def update_author():
     id_ = input("Enter the author's id: ")

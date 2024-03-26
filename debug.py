@@ -3,10 +3,10 @@ from models.book import Book
 import ipdb
 from models import create_tables
 
-create_tables() 
+create_tables()  
 
 def reset_database():
-   
+ 
 
     author1 = Author.create("F. Scott Fitzgerald", "fitzgerald@gmail.com")
     author2 = Author.create("Harper Lee", "harperle@gmail.com")

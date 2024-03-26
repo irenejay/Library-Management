@@ -20,6 +20,7 @@ from main import (
 
 
 def main():
+    
     while True:
         menu()
         choice = input("> ")
@@ -54,14 +55,26 @@ def main():
           
 
 def menu():
+    """Display the main menu"""
+    print("Welcome to Library Management System")
+    print("-----------------------------------")
+    print("---------------------------")
+    print("          CLI         ")
+    print("---------------------------")
     print("Please select an option:")
     print("0. Exit the program")
+    print("-----------------------------")
+    print("          AUTHOR CLI     ")
+    print("-----------------------------")
     print("1. List all authors")
     print("2. Find author by name")
     print("3. Find author by id")
     print("4: Create author")
     print("5: Update author")
     print("6: Delete author")
+    print("-----------------------------")
+    print("        BOOK CLI      ")
+    print("-----------------------------")
     print("7. List all books")
     print("8. Find book by title")
     print("9. Find book by id")

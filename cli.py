@@ -1,6 +1,8 @@
 
 from models.author import Author
 from models.book import Book
+import os
+from colorama import Fore, Style
 from main import (
     exit_program,
     list_authors,
@@ -51,7 +53,27 @@ def main():
         elif choice == "12":
             delete_book()
         else:
-            print("Invalid choice")
+            print("Invalid choice.Please select a valid option.")
+         
+        input("Press Enter to continue...")
+        
+def clear_screen():
+    """Clear the terminal screen"""
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def exit_program():
+    """Exit the program"""
+    clear_screen()
+    print(Fore.GREEN + "Goodbye!" + Style.RESET_ALL)
+    exit()
+
+def print_error(message):
+    """Print an error message"""
+    print(Fore.RED + "Error:", message + Style.RESET_ALL)
+
+def print_success(message):
+    """Print a success message"""
+    print(Fore.GREEN + "Success:", message + Style.RESET_ALL)
           
 
 def menu():
